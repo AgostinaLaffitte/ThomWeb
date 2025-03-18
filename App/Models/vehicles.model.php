@@ -1,5 +1,5 @@
 <?php
-class VehicleModel {
+class VehiclesModel {
     private $db;
 
     public function __construct() {
@@ -10,7 +10,7 @@ class VehicleModel {
     }
   
     
-    public function getVehicle() {
+    public function getVehicles() {
         $sql = 'SELECT * FROM vehicle';
         $params = [];
         try {
@@ -60,7 +60,7 @@ class VehicleModel {
         $vehicle = $this->getVehicleById($id);
     
         // Actualizar los datos de la productora en la base de datos
-        $query = $this->db->prepare('UPDATE vehicle SET nombre = ?, model = ?, price = ?, description = ? WHERE id_vehicle = ?');
+        $query = $this->db->prepare('UPDATE vehicle SET name = ?, model = ?, price = ?, description = ? WHERE id_vehicle = ?');
         $query->execute([$name, $model, $price, $description, $id]);
     }
     

@@ -1,15 +1,15 @@
 "use strict"
 const BASE_PATH = window.location.pathname.split("/").slice(0, -2).join("/"); // Ajusta el nivel según la estructura
-const BASE_URL = `${window.location.origin}${BASE_PATH}/ThomWeb`;
+const BASE_URL = `${window.location.origin}${BASE_PATH}/ThomWeb/`;
 
-let btnInicio=document.getElementById("inicio").addEventListener("click", getAllVehicle);
+let btnInicio=document.getElementById("inicio").addEventListener("click", getAllVehicles);
 
 let Vehicles= [];
 let Vehicle = {};
 
-async function getAllVehicle() {
+async function getAllVehicles() {
     try {
-        const response= await fetch( BASE_URL + "Vehicles");
+        const response= await fetch( BASE_URL + "vehicles");
        
         if(!response.ok){
             throw new Error("error al llamar get vehicles");
@@ -26,7 +26,7 @@ async function getAllVehicle() {
 function showVehicles(){
     let div= document.getElementById("contenedorMostrar");
     div.innerHTML=" ";
-    producers.forEach(producer => {
+    vehicles.forEach(vehicle => {
     let html= ` <div class="col-md-4 mb-4">
                     <div class='card'>
                         <div class='film-image' style='height: 200px; background-color: #f0f0f0; border: 5px solid black;'>
@@ -42,7 +42,7 @@ function showVehicles(){
             </div>`;
      div.innerHTML +=html;
     });
-   div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${vehicle.length} vehiculos</small></p>`;
+   div.innerHTML += `<p class="mt-3 text-center"><small>Mostrando ${vehicles.length} vehiculos</small></p>`;
    const btnsDetail = document.querySelectorAll(".btnDetail");
    btnsDetail.forEach(btn => {
        btn.addEventListener('click', getVehicle);
@@ -76,7 +76,7 @@ function showVehicles(){
  function showVehicle() {
     let div= document.getElementById("contenedorMostrar");
     div.innerHTML=" ";
-    if (!film) {
+    if (!vehicle) {
         div.innerHTML = "<p>Detalles del vehiculo no encontrados.</p>";
         return;
     }
@@ -86,7 +86,7 @@ function showVehicles(){
         <div class="card">
             <div class="card-body">
                 <p class="card-text"><strong>Director:${vehicle.model}</p>
-                <p class="card-text"><strong>Género:</strong>${vehice.price}</p>
+                <p class="card-text"><strong>Género:</strong>${vehicle.price}</p>
                 <p class="card-text"><strong>Idioma:</strong>${vehicle.description}</p>
             </div>
         </div>
@@ -96,4 +96,5 @@ function showVehicles(){
     
  }
  
-getAllVehicle();
+getAllVehicles();
+console.log(BASE_URL);

@@ -2,7 +2,7 @@
 
 require_once './Libs/response.php';
 require_once './Libs/route.php';
-require_once './App/Controllers/vehicle.controller.php';
+require_once './App/Controllers/vehicles.controller.php';
 require_once './App/Controllers/auth.controller.php';
 require_once './App/Middlewares/jwt.auth.middleware.php';
 require_once './config/config.php';
@@ -14,11 +14,11 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 $router = new Router();
 $router->addMiddleware(new JWTAuthMiddleware());
 
-$router->addRoute('vehicle', 'GET', 'Fvehicel.controller', 'showHome');
-$router->addRoute('vehicle/:id', 'GET', 'vehicel.controller', 'showVehicleDetails');
-$router->addRoute('vehicle', 'POST', 'vehicel.controller', 'addVehicle');
-$router->addRoute('vehicle/:id', 'DELETE', 'vehicel.controller', 'deleteVehicle');
-$router->addRoute('vehicle/:id', 'PUT', 'vehicel.controller', 'editVehicle');
+$router->addRoute('vehicles', 'GET', 'VehiclesController', 'showVehicles');
+$router->addRoute('vehicle/:id', 'GET', 'VehiclesController', 'showVehicleDetails');
+$router->addRoute('vehicle', 'POST', 'VehiclesController', 'addVehicle');
+$router->addRoute('vehicle/:id', 'DELETE', 'VehiclesController', 'deleteVehicle');
+$router->addRoute('vehicle/:id', 'PUT', 'VehiclesController', 'editVehicle');
 
 
 $router->addRoute('usuarios/token', 'GET','UserApiController','getToken');
