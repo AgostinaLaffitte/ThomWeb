@@ -17,7 +17,7 @@ class VehiclesController {
         $this->model = new VehiclesModel();
 
         // Instancio la vista de películas 
-        $this->view =new JSONView();
+        $this->view =new JSONview();
 
     }
     
