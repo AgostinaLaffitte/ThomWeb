@@ -1,6 +1,6 @@
 "use strict"
 const BASE_PATH = window.location.pathname.split("/").slice(0, -2).join("/"); // Ajusta el nivel según la estructura
-const BASE_URL = `${window.location.origin}${BASE_PATH}/ThomWeb/`;
+const BASE_URL = `${window.location.origin}${BASE_PATH}/ThomWeb/api/`;
 
 let btnInicio=document.getElementById("inicio").addEventListener("click", getAllVehicles);
 

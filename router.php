@@ -3,9 +3,9 @@
 require_once './Libs/response.php';
 require_once './Libs/route.php';
 require_once './App/Controllers/vehicles.controller.php';
-require_once './App/Controllers/auth.controller.php';
+//require_once './App/Controllers/auth.controller.php';
 require_once './App/Middlewares/jwt.auth.middleware.php';
-require_once './config/config.php';
+require_once './Config/config.php';
 
 
 // base_url para direcciones y base tag
@@ -21,7 +21,7 @@ $router->addRoute('vehicle/:id', 'DELETE', 'VehiclesController', 'deleteVehicle'
 $router->addRoute('vehicle/:id', 'PUT', 'VehiclesController', 'editVehicle');
 
 
-$router->addRoute('usuarios/token', 'GET','UserApiController','getToken');
+//$router->addRoute('usuarios/token', 'GET','UserApiController','getToken');
 
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
 
