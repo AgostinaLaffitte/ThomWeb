@@ -1,11 +1,11 @@
 "use strict"
 const BASE_PATH = window.location.pathname.split("/").slice(0, -2).join("/"); // Ajusta el nivel según la estructura
-const BASE_URL = `${window.location.origin}${BASE_PATH} ThomWeb/`;
+const BASE_URL = `${window.location.origin}${BASE_PATH}/ThomWeb/`;
 
 let btnInicio=document.getElementById("inicio").addEventListener("click", getAllVehicles);
 
-let Vehicles= [];
-let Vehicle = {};
+let vehicle= {};
+let Vehicles = [];
 
 async function getAllVehicles() {
     try {
@@ -25,7 +25,7 @@ async function getAllVehicles() {
 
 function showVehicles(){
     let div= document.getElementById("contenedorMostrar");
-    div.innerHTML=" ";
+    div.innerHTML="";
     Vehicles.forEach(vehicle => {
     let html= ` <div class="col-md-4 mb-4">
                     <div class='card'>
@@ -85,9 +85,9 @@ function showVehicles(){
         <h1 class="mb-4">${vehicle.name}</h1>
         <div class="card">
             <div class="card-body">
-                <p class="card-text"><strong>Director:${vehicle.model}</p>
-                <p class="card-text"><strong>Género:</strong>${vehicle.price}</p>
-                <p class="card-text"><strong>Idioma:</strong>${vehicle.description}</p>
+                <p class="card-text"><strong>Director:${vehicle.model}</strong></p>
+                <p class="card-text"><strong>Género:${vehicle.price}</strong></p>
+                <p class="card-text"><strong>Idioma:${vehicle.description}</strong></p>
             </div>
         </div>
     </div>`;
@@ -98,3 +98,5 @@ function showVehicles(){
  
 getAllVehicles();
 console.log(BASE_URL);
+console.log(vehicle);
+console.log(Vehicles);
