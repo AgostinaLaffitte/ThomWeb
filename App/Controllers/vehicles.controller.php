@@ -43,27 +43,36 @@ class VehiclesController {
        $body=$req->body;
 
         // Validación de campos obligatorios
-        if (empty($body['name'])) {
-            return $this->view->response('Falta completar el nombre del vehiculo', 404);
+        if (empty($body['car_brand	'])) {
+            return $this->view->response('Falta completar el marca del vehiculo', 404);
         }
-        if (empty($body['model'])) {
-            return $this->view->response('Falta completar el modelo del vehiculo',404);
+        if (empty($body['version'])) {
+            return $this->view->response('Falta completar la version del vehiculo',404);
         }
-        if (empty($body['price'])) {
-            return $this->view->response('Falta completar el precio del vehiculo',404);
+        if (empty($body['year'])) {
+            return $this->view->response('Falta completar el año del vehiculo',404);
+        }
+        if (empty($body['mileage'])) {
+            return $this->view->response('Falta completar el klometraje del vehiculo',404);
         }
         if (empty($body['description'])) {
             return $this->view->response('Falta completar la descripcion del vehiculo',404);
         }
+        if (empty($body['price'])) {
+            return $this->view->response('Falta completar el precio del vehiculo',404);
+        }
       
             // Obtengo los datos del formulario
-          $name=$body['name'];
-          $model =$body['model'];
-          $price =$body['price'];
+          $name=$body['car_brand'];
+          $model =$body['version'];
+          $year =$body['year'];
+          $mileage=$body['mileage'];
           $description = $body['description'];
+          $price =$body['price'];
+
          
           // Insento la pelicula
-          $id_vehicle = $this->model->insertVehicle($name, $model, $price, $description);
+          $id_vehicle = $this->model->insertVehicle($car_brand, $version,$year,$mileage, $description, $price);
   
       
           // Verificar si la inserción fue exitosa
@@ -108,27 +117,37 @@ class VehiclesController {
         }
     
             // Validación de los campos del formulario
-            if (empty($body['name'])) {
-                return $this->view->response('Falta completar el nombre del vehiculo', 404);
+            if (empty($body['car_brand	'])) {
+                return $this->view->response('Falta completar el marca del vehiculo', 404);
             }
-            if (empty($body['model'])) {
-                return $this->view->response('Falta completar el modelo del vehiculo',404);
+            if (empty($body['version'])) {
+                return $this->view->response('Falta completar la version del vehiculo',404);
             }
-            if (empty($body['price'])) {
-                return $this->view->response('Falta completar el precio del vehiculo',404);
+            if (empty($body['year'])) {
+                return $this->view->response('Falta completar el año del vehiculo',404);
+            }
+            if (empty($body['mileage'])) {
+                return $this->view->response('Falta completar el kilometraje del vehiculo',404);
             }
             if (empty($body['description'])) {
                 return $this->view->response('Falta completar la descripcion del vehiculo',404);
             }
+            if (empty($body['price'])) {
+                return $this->view->response('Falta completar el precio del vehiculo',404);
+            }
+          
            
          // Obtengo los datos del formulario
-          $name =$body['name'];
-          $model =$body['model'];
-          $price =$body['price'];
+          $name =$body['car_brand'];
+          $model =$body['version'];
+          $year =$body['year'];
+          $mileage=$body['mileage'];
           $description = $body['description'];
+          $price =$body['price'];
+
          
             // Llamo al modelo para actualizar los datos
-            $this->model->updateVehicle($id_vehicle, $name, $model, $price, $description);
+            $this->model->updateVehicle($id_vehicle, $car_brand	, $version, $year,$mileage, $description, $price);
             $vehicle= $this->model->getVehicleById($id_vehicle);
             return $this->view->response($vehicle); 
            

@@ -34,7 +34,7 @@ function showVehicles(){
                         </div>
                         <div class='card-body'>
                                 <h5 class='card-title'>
-                                    <a href='#' data-id='${vehicle.id_vehicle}'class='text-decoration-none titulo text-danger  btnDetail' >${vehicle.name}</a>
+                                    <a href='#' data-id='${vehicle.id_vehicle}'class='text-decoration-none titulo text-danger  btnDetail' >${vehicle.car_brand}</a>
                                 </h5>
                                 <p class='card-text'>${vehicle.price}</p>
                         </div>
@@ -74,27 +74,53 @@ function showVehicles(){
     }
  }
  function showVehicle() {
-    let div= document.getElementById("contenedorMostrar");
-    div.innerHTML=" ";
-    if (!vehicle) {
-        div.innerHTML = "<p>Detalles del vehiculo no encontrados.</p>";
-        return;
-    }
-    let html= `  
-     <div class="container mt-4 informacion">
-        <h1 class="mb-4">${vehicle.name}</h1>
-        <div class="card">
-            <div class="card-body">
-                <p class="card-text"><strong>Director:${vehicle.model}</strong></p>
-                <p class="card-text"><strong>Género:${vehicle.price}</strong></p>
-                <p class="card-text"><strong>Idioma:${vehicle.description}</strong></p>
-            </div>
-        </div>
-    </div>`;
-    ;
-    div.innerHTML +=html;
     
- }
+        let div = document.getElementById("contenedorMostrar");
+        div.innerHTML = "";
+        if (!vehicle) {
+            div.innerHTML = "<p>Detalles del vehículo no encontrados.</p>";
+            return;
+        }
+        // Suponiendo que 'vehicle.images' contiene las imágenes del vehículo
+        let carouselItems = vehicle.images.map((image, index) => {
+            return `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                    <img src="uploads/${image}" class="d-block w-100" alt="Imagen de ${vehicle.name}">
+                </div>
+            `;
+        }).join('');
+        
+        let html = `
+            <div class="container mt-4 informacion">
+                <h1 class="mb-4">${vehicle.car_brand}</h1>
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        ${carouselItems}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text"><strong>version: ${vehicle.version}</strong></p>
+                        <p class="card-text"><strong>version: ${vehicle.year}</strong></p>
+                        <p class="card-text"><strong>version: ${vehicle.mileage}</strong></p>
+                        <p class="card-text"><strong>Precio: ${vehicle.description}</strong></p>
+                        <p class="card-text"><strong>Descripción: ${vehicle.price}</strong></p>
+                    </div>
+                </div>
+            </div>
+        `;
+        div.innerHTML += html;
+    }
+    
+
  
 getAllVehicles();
 console.log(BASE_URL);

@@ -32,10 +32,10 @@ class VehiclesModel {
 
         return $vehicle;
     }
-    public function insertVehicle($name, $model, $price, $description) {
+    public function insertVehicle($car_brand, $version, $year, $mileage, $description, $price) {
     
-        $query = $this->db->prepare('INSERT INTO vehicle( name, model, price, description) VALUES ( ?, ?, ?, ?)');
-        $query->execute([$name, $model, $price, $description]);
+        $query = $this->db->prepare('INSERT INTO vehicle( car_brand	, version, year,mileage, description, price) VALUES (?, ?,?, ?, ?, ?)');
+        $query->execute([$car_brand	, $version,$year,$mileage, $description,$price]);
     
         $id_vehicle = $this->db->lastInsertId();
         return $id_vehicle;
@@ -55,13 +55,13 @@ class VehiclesModel {
         }
 
     }
-    public function updateVehicle($name, $model, $price, $description, $id) {
+    public function updateVehicle($car_brand, $version, $year,$mileage, $description, $price $id) {
         // Obtener el productor existente para conservar la imagen actual si no se proporciona una nueva
         $vehicle = $this->getVehicleById($id);
     
         // Actualizar los datos de la productora en la base de datos
-        $query = $this->db->prepare('UPDATE vehicle SET name = ?, model = ?, price = ?, description = ? WHERE id_vehicle = ?');
-        $query->execute([$name, $model, $price, $description, $id]);
+        $query = $this->db->prepare('UPDATE vehicle SET car_brand = ?, version= ?, year= ?, mileage= ?, description = ?, price= ?,WHERE id_vehicle = ?');
+        $query->execute([$car_brand, $version,$year, $mileage, $description, $price,$id]);
     }
     
 }
